@@ -52,6 +52,15 @@ const constructEmployeeChoices = (roles) => {
 //   console.log(`Connected to the classlist_db database.`)
 // );
 
+// const db = new Db({
+//     host: process.envDB_HOST || "localhost",
+//     user: process.envDB_USER || "root",
+//     password: process.envDB_PASSWORD || "password",
+//     database: process.envDB_NAME || "company_db",
+//   });
+
+//   await db.start();
+
 const start = () => {
   // declare one question with list of actions
   // prompt question and get answer (action)
@@ -83,3 +92,5 @@ const start = () => {
 };
 
 start();
+
+console.log("hello");
