@@ -11,7 +11,7 @@ const getEmployee = async (db) => {
   return choices;
 };
 
-const employeeQuestions = async () => {};
+const employeeQuestion = async () => {};
 
 const updateEmployee = async () => {};
 
@@ -19,7 +19,7 @@ const deleteEmployee = async () => {};
 
 module.exports = {
   getEmployee,
-  employeeQuestions,
+  employeeQuestion,
   updateEmployee,
   deleteEmployee,
 };

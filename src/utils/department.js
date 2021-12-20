@@ -11,15 +11,33 @@ const getDepartments = async (db) => {
   return choices;
 };
 
-const departmentQuestions = async () => {};
+const departmentQuestion = async (inquirer) => {
+  const question = [
+    {
+      type: "input",
+      name: "departmentName",
+      message: "Enter the Department name:",
+    },
+  ];
 
-const viewDepartment = async () => {};
+  const answer = inquirer.prompt(question);
+  return answer;
+};
+
+const viewDepartment = async (db) => [
+  {
+    type: "list",
+    name: "department",
+    message: "Enter chosen department to view:",
+    choices: await getDepartments(db),
+  },
+];
 
 const deleteDepartment = async () => {};
 
 module.exports = {
   getDepartments,
-  departmentQuestions,
+  departmentQuestion,
   viewDepartment,
   deleteDepartment,
 };
