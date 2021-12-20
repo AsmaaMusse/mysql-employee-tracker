@@ -1,3 +1,5 @@
+const inquirer = require("inquirer");
+
 const displayDepartments = () => {
   // execute mysql query
   // log/table departments
