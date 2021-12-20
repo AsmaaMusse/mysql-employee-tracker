@@ -49,6 +49,10 @@ const initialQuestions = async () => {
           value: "updateEmployeeManager",
         },
         {
+          name: "View Employee Department",
+          value: "viewEmployeeDepartment",
+        },
+        {
           name: "Delete Employee",
           value: "deleteEmployee",
         },

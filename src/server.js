@@ -71,9 +71,10 @@ const start = async () => {
       console.table(data);
     }
 
+    // Add/View Employee
     if (option === "addEmployee") {
       const role = await selectFromRole(db);
-
+      // check if roles available
       if (role.length) {
         const questions = await employeeQuestions(db);
         const { firstName, lastName, role_id } = await inquirer.prompt(
@@ -93,30 +94,73 @@ const start = async () => {
       const data = await db.query(query);
       console.table(data);
     }
-  }
+    if (option === "updateEmployeeRole") {
+      const employee = await selectFromEmployee(db);
 
-  // if displayEmployees()
-  if ("addDepartment") {
-    // prompt department questions (name) and get answers
-    // construct mysql insert query
-    // execute mysql query
-  }
-  if ("addRole") {
-    // get departments from DB
-    // pass the departments to a choice constructor function
-    // prompt question to select department, title, salary and get answers
-    // construct mysql insert query for role
-    // execute mysql query
-  }
-  if ("addEmployee") {
-    // get roles from DB
-    // get employees from DB
-    // pass the roles to a choice constructor function
-    // pass the employees to a choice constructor function
-    // prompt question to select role, select manager, first name, last name and get answers
-    // construct mysql insert query for employee
-    // execute mysql query
-  }
+      if (employee.length) {
+        const questions = await updateRoleQuestions(db);
+        const { employees, role_id } = await inquirer.prompt(questions);
+        const query = `UPDATE employee SET role_id = ${role_id} WHERE id = ${employees};`;
+        await db.query(query);
+      }
+    }
+    if (option === "viewEmployee") {
+      const questions = await viewDepartmentQuestion(db);
+      const { department } = await inquirer.prompt(questions);
+      const query = `SELECT first_name, last_name FROM employee INNER JOIN role ON employee.role_id = role.id WHERE department_id = ${department};`;
+      console.table(await db.query(query));
+    }
+    if (option === "updateEmployeeManager") {
+      const employee = await selectFromEmployee(db);
+
+      if (employee.length) {
+          const questions = await updateManagerQuestions(db);
+          const { employee, manager } = await inquirer.prompt(questions);
+
+          const query = `UPDATE employee SET manager_id = ${manager} WHERE id = ${employee};`;
+          await db.query(query);
+      }
+    }
+    if (option === "viewEmployeeDepartment") {
+    const questions = await viewDepartmentQuestion(db);
+    const { department } = await inquirer.prompt(questions);
+    const query = `SELECT first_name, last_name FROM employee INNER JOIN role ON employee.role_id = role.id WHERE department_id = ${department};`;
+    console.table(await db.query(query));
+    }
+
+    // Delete Options
+    if (option === "deleteDepartment") {
+      const questions = await deleteDepartmentQuestion(db);
+      const { department } = await inquirer.prompt(questions);
+      const query = `DELETE FROM department WHERE id = ${department};`;
+      await db.query(query);
+    }
+    if (option === "deleteRole") {
+      const questions = await deleteRoleQuestion(db);
+      const { role } = await inquirer.prompt(questions);
+      const query = `DELETE FROM role WHERE id = ${role}`;
+      await db.query(query);
+    }
+    if (option === "deleteEmployee") {
+      const questions = await deleteEmployeeQuestion(db);
+      const { employee } = await inquirer.prompt(questions);
+      const query = `DELETE FROM employee WHERE id = ${employee};`;
+      await db.query(query);
+    }
+    if (option === "viewBudget") {
+      const question = await viewBudget(db);
+      const { department } = await inquirer.prompt(question);
+      const query = `SELECT SUM(salary) AS Total_Utilized_Budget FROM role WHERE department_id = ${department};`;
+      console.table(await db.query(query));
+    }
+
+   
+
+  
+   
+
+
+ 
 };
 
 start();
