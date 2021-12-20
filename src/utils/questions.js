@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const { getTables } = require("./getTables");
+const { getDepartments, getRole, getEmployee } = require("./getTables");
 
 const initialQuestions = async () => {
   const questions = [
@@ -82,6 +82,24 @@ const departmentQuestions = async (inquirer) => {
   return answer;
 };
 
+const viewDepartmentQuestion = async (db) => [
+  {
+    type: "list",
+    name: "department",
+    message: "Choose the department to view:",
+    choices: await getDepartments(db),
+  },
+];
+
+const deleteDepartmentQuestion = async (db) => [
+  {
+    type: "list",
+    name: "department",
+    message: "Choose the department to delete:",
+    choices: await getDepartments(db),
+  },
+];
+
 const roleQuestions = async (db) => [
   {
     type: "input",
@@ -101,25 +119,6 @@ const roleQuestions = async (db) => [
   },
 ];
 
-const employeeQuestions = async (db) => [
-  {
-    type: "input",
-    name: "firstName",
-    message: "Enter the first name:",
-  },
-  {
-    type: "input",
-    name: "lastName",
-    message: "Enter the last name:",
-  },
-  {
-    type: "list",
-    name: "role_id",
-    message: "Choose respective role for the employee:",
-    choices: await getRoles(db),
-  },
-];
-
 const updateRoleQuestions = async (db) => [
   {
     type: "list",
@@ -135,6 +134,34 @@ const updateRoleQuestions = async (db) => [
   },
 ];
 
+const deleteRoleQuestion = async (db) => [
+  {
+    type: "list",
+    name: "role",
+    message: "Choose the role to delete:",
+    choices: await getRoles(db),
+  },
+];
+
+const employeeQuestions = async (db) => [
+  {
+    type: "input",
+    name: "firstName",
+    message: "Enter the first name:",
+  },
+  {
+    type: "input",
+    name: "lastName",
+    message: "Enter the last name:",
+  },
+  {
+    type: "list",
+    name: "role_id",
+    message: "Choose respective role for the employee:",
+    choices: await getRole(db),
+  },
+];
+
 const updateManagerQuestions = async (db) => [
   {
     type: "list",
@@ -147,33 +174,6 @@ const updateManagerQuestions = async (db) => [
     name: "manager",
     message: "Choose the correct manager:",
     choices: await getEmployee(db),
-  },
-];
-
-const viewDepartmentQuestion = async (db) => [
-  {
-    type: "list",
-    name: "department",
-    message: "Choose the department to view:",
-    choices: await getDepartments(db),
-  },
-];
-
-const deleteDepartmentQuestion = async (db) => [
-  {
-    type: "list",
-    name: "department",
-    message: "Choose the department to delete:",
-    choices: await getDepartments(db),
-  },
-];
-
-const deleteRoleQuestion = async (db) => [
-  {
-    type: "list",
-    name: "role",
-    message: "Choose the role to delete:",
-    choices: await getRoles(db),
   },
 ];
 
@@ -198,13 +198,13 @@ const viewBudget = async (db) => [
 module.exports = {
   initialQuestions,
   departmentQuestions,
-  roleQuestions,
-  employeeQuestions,
-  updateRoleQuestions,
-  updateManagerQuestions,
   viewDepartmentQuestion,
   deleteDepartmentQuestion,
+  roleQuestions,
+  updateRoleQuestions,
   deleteRoleQuestion,
+  employeeQuestions,
+  updateManagerQuestions,
   deleteEmployeeQuestion,
   viewBudget,
 };
