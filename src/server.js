@@ -1,74 +1,45 @@
 const inquirer = require("inquirer");
+const Db = require("./db/db");
 
-const displayDepartments = () => {
-  // execute mysql query
-  // log/table departments
-};
+const { getDepartments, getRole, getEmployee } = require("./utils/getTables");
+const {
+  initialQuestions,
+  departmentQuestions,
+  viewDepartmentQuestion,
+  deleteDepartmentQuestion,
+  roleQuestions,
+  updateRoleQuestions,
+  deleteRoleQuestion,
+  employeeQuestions,
+  updateManagerQuestions,
+  deleteEmployeeQuestion,
+  viewBudget,
+} = require("./utils/questions");
 
-const displayRoles = () => {
-  // execute mysql query
-  // log/table roles
-};
+const start = async () => {
+  const db = new Db({
+    host: process.env.DB_HOST || "localhost",
+    user: process.env.DB_USER || "root",
+    password: process.env.DB_PASSWORD || "Password123",
+    database: process.env.DB_NAME || "company_db",
+  });
 
-const displayEmployees = () => {
-  // execute mysql query
-  // log/table employees
-};
+  await db.start();
 
-const getDepartments = () => {
-  // execute mysql query
-  // return departments
-};
+  let active = true;
 
-const getRoles = () => {
-  // execute mysql query
-  // return roles
-};
+  while (active) {
+    const { option } = await initialQuestions(inquirer);
+    console.log(option);
 
-const getEmployees = () => {
-  // execute mysql query
-  // return employees
-};
+    if (option === "addDepartment") {
+      const { departmentName } = await departmentQuestions(inquirer);
+      const query = `INSERT INTO department (name) VALUES ('${departmentName}');`;
+      await db.query(query);
+      console.log(`Added ${departmentName} into database`);
+    }
+  }
 
-const constructDepartmentChoices = (departments) => {
-  // return an array of department choices
-};
-
-const constructRoleChoices = (roles) => {
-  // return an array of role choices
-};
-
-const constructEmployeeChoices = (roles) => {
-  // return an array of employee choices
-};
-
-// const db = mysql.createConnection(
-//   {
-//     host: 'localhost',
-//     // MySQL username,
-//     user: 'root',
-//     // MySQL password
-//     password: '',
-//     database: 'classlist_db',
-//   },
-//   console.log(`Connected to the classlist_db database.`)
-// );
-
-// const db = new Db({
-//     host: process.envDB_HOST || "localhost",
-//     user: process.envDB_USER || "root",
-//     password: process.envDB_PASSWORD || "password",
-//     database: process.envDB_NAME || "company_db",
-//   });
-
-//   await db.start();
-
-const start = () => {
-  // declare one question with list of actions
-  // prompt question and get answer (action)
-  // insert if blocks for all actions
-  // if displayDepartments()
-  // if displayRoles()
   // if displayEmployees()
   if ("addDepartment") {
     // prompt department questions (name) and get answers
@@ -94,5 +65,3 @@ const start = () => {
 };
 
 start();
-
-console.log("hello");
