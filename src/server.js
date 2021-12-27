@@ -34,7 +34,7 @@ const start = async () => {
   let active = true;
 
   while (active) {
-    const { option } = await initialQuestions(inquirer);
+    const { option } = await initialQuestions();
     console.log(option);
 
     // Add/View Department
@@ -63,7 +63,7 @@ const start = async () => {
         await db.query(query);
         console.log(`Added ${name} into Role Table!`);
       } else {
-        console.warn("[ERROR]: Please enter a department before proceeding...");
+        console.warn("[ERROR]: Please enter a department before continuing...");
       }
     }
     if (option === "viewRole") {
@@ -85,7 +85,7 @@ const start = async () => {
         await db.query(query);
         console.log(`Created ${firstName} ${lastName} as an employee!`);
       } else {
-        console.warn("[ERROR]: Please enter a role before proceeding...");
+        console.warn("[ERROR]: Please enter a role before continuing...");
       }
     }
     if (option === "viewEmployee") {
@@ -114,18 +114,18 @@ const start = async () => {
       const employee = await selectFromEmployee(db);
 
       if (employee.length) {
-          const questions = await updateManagerQuestions(db);
-          const { employee, manager } = await inquirer.prompt(questions);
+        const questions = await updateManagerQuestions(db);
+        const { employee, manager } = await inquirer.prompt(questions);
 
-          const query = `UPDATE employee SET manager_id = ${manager} WHERE id = ${employee};`;
-          await db.query(query);
+        const query = `UPDATE employee SET manager_id = ${manager} WHERE id = ${employee};`;
+        await db.query(query);
       }
     }
     if (option === "viewEmployeeDepartment") {
-    const questions = await viewDepartmentQuestion(db);
-    const { department } = await inquirer.prompt(questions);
-    const query = `SELECT first_name, last_name FROM employee INNER JOIN role ON employee.role_id = role.id WHERE department_id = ${department};`;
-    console.table(await db.query(query));
+      const questions = await viewDepartmentQuestion(db);
+      const { department } = await inquirer.prompt(questions);
+      const query = `SELECT first_name, last_name FROM employee INNER JOIN role ON employee.role_id = role.id WHERE department_id = ${department};`;
+      console.table(await db.query(query));
     }
 
     // Delete Options
@@ -154,13 +154,13 @@ const start = async () => {
       console.table(await db.query(query));
     }
 
-   
-
-  
-   
-
-
- 
+    // Quit
+    if (option === "exit") {
+      active = false;
+      db.stop();
+      console.log("Exited application");
+    }
+  }
 };
 
 start();

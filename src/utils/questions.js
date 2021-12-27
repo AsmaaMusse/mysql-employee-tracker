@@ -68,9 +68,9 @@ const initialQuestions = async () => {
     },
   ];
 
-  const answers = await answers(questions);
+  const userAnswers = await inquirer.prompt(questions);
 
-  return answers;
+  return userAnswers;
 };
 
 const departmentQuestions = async (inquirer) => {

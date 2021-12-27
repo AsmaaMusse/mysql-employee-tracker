@@ -1,4 +1,4 @@
-USE comapny_db;
+use company_db;
 
 INSERT INTO department (name)
 Values
