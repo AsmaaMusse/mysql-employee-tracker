@@ -1,12 +1,13 @@
-const selectFromDepartment = async (db) =>
-  await db.query("SELECT * FROM department");
+const selectFromDepartment = async (db) => {
+  return db.query("SELECT * FROM department");
+};
 
 const selectFromRole = async (db) => {
-  await db.query("SELECT * FROM role");
+  return db.query("SELECT * FROM role");
 };
 
 const selectFromEmployee = async (db) => {
-  await db.query("SELECT * FROM employee");
+  return db.query("SELECT * FROM employee");
 };
 
 module.exports = {
