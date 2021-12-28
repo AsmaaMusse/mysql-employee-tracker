@@ -25,7 +25,7 @@ const start = async () => {
   const db = new Db({
     host: process.env.DB_HOST || "localhost",
     user: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD || "Password123",
+    password: process.env.DB_PASSWORD || "password",
     database: process.env.DB_NAME || "company_db",
   });
 
@@ -104,12 +104,12 @@ const start = async () => {
         await db.query(query);
       }
     }
-    if (option === "viewEmployee") {
-      const questions = await viewDepartmentQuestion(db);
-      const { department } = await inquirer.prompt(questions);
-      const query = `SELECT first_name, last_name FROM employee INNER JOIN role ON employee.role_id = role.id WHERE department_id = ${department};`;
-      console.table(await db.query(query));
-    }
+    // if (option === "viewEmployee") {
+    //   const questions = await viewDepartmentQuestion(db);
+    //   const { department } = await inquirer.prompt(questions);
+    //   const query = `SELECT first_name, last_name FROM employee INNER JOIN role ON employee.role_id = role.id WHERE department_id = ${department};`;
+    //   console.table(await db.query(query));
+    // }
     if (option === "updateEmployeeManager") {
       const employee = await selectFromEmployee(db);
 
