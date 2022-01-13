@@ -8,9 +8,6 @@ For this project, my aim was to create a command-line application from scratch t
 
 Demo:
 
-- Part 1:
-
-- Part 2:
 
 Github: https://github.com/AsmaaMusse/sql-employee-tracker
 
@@ -39,6 +36,6 @@ npm run start
 
 ## Screenshots:
 
-![workbench](src\assets\images\workbench.png)
+![workbench](src/assets/images/workbench.png)
 
-![terminal](src\assets\images\terminal.png)
+![terminal](src/assets/images/terminal.png)
