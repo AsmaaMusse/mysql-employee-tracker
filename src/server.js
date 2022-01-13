@@ -1,3 +1,4 @@
+require("dotenv").config();
 const inquirer = require("inquirer");
 const Db = require("./db/db");
 
@@ -23,10 +24,10 @@ const {
 
 const start = async () => {
   const db = new Db({
-    host: process.env.DB_HOST || "localhost",
-    user: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD || "Password123",
-    database: process.env.DB_NAME || "company_db",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
   });
 
   await db.start();
