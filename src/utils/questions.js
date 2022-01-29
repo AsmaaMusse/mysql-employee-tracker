@@ -143,7 +143,7 @@ const deleteRoleQuestion = async (db) => [
     type: "list",
     name: "role",
     message: "Choose the role to delete:",
-    choices: await getRoles(db),
+    choices: await getRole(db),
   },
 ];
 
@@ -195,7 +195,7 @@ const viewBudget = async (db) => [
     type: "list",
     name: "department",
     message: "Choose a department:",
-    choices: await getDepartment(db),
+    choices: await getDepartments(db),
   },
 ];
 
