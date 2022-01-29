@@ -134,7 +134,7 @@ const updateRoleQuestions = async (db) => [
     type: "list",
     name: "role_id",
     message: "Choose the role to update an employee:",
-    choices: await getRoles(db),
+    choices: await getRole(db),
   },
 ];
 
