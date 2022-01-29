@@ -1,4 +1,4 @@
-# sql-employee-tracker ![MIT](https://img.shields.io/static/v1?label=MIT&message=License&color=orange)
+# Employee tracker ![MIT](https://img.shields.io/static/v1?label=MIT&message=License&color=orange)
 
 ## Description:
 
@@ -6,7 +6,7 @@ For this project, my aim was to create a command-line application from scratch t
 
 ## Links:
 
-Demo:
+Demo: https://drive.google.com/file/d/1BBoX-ylcKnCFjSRGYMI2oqUWK38DVb9T/view
 
 
 Github: https://github.com/AsmaaMusse/sql-employee-tracker
