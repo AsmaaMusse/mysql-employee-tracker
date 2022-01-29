@@ -1,0 +1,30 @@
+{
+  "name": "sql-employee-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "db": "node ./src/db/db.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AsmaaMusse/sql-employee-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AsmaaMusse/sql-employee-tracker/issues"
+  },
+  "homepage": "https://github.com/AsmaaMusse/sql-employee-tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "dotenv": "^11.0.0",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
