@@ -1,4 +1,4 @@
-# Employee tracker ![MIT](https://img.shields.io/static/v1?label=MIT&message=License&color=orange)
+# Employee Tracker ![MIT](https://img.shields.io/static/v1?label=MIT&message=License&color=orange)
 
 ## Description:
 
@@ -16,7 +16,7 @@ Github: https://github.com/AsmaaMusse/sql-employee-tracker
 - Javascript
 - Node.js
 - Inquirer
-- Mysql
+- MySQL
 
 ## Usage:
 
