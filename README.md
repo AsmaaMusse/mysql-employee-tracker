@@ -4,6 +4,13 @@
 
 For this project, my aim was to create a command-line application from scratch to manage a company's employee database using Node.js, Inquirer and MySql.
 
+## Table of contents:
+- [Links](#links)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Screenshots](#screenshots)
+- [Contribute](#contribute)
+
 ## Links:
 
 Demo: https://drive.google.com/file/d/1BBoX-ylcKnCFjSRGYMI2oqUWK38DVb9T/view
